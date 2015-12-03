@@ -5,6 +5,9 @@ var time = document.getElementById('time');
 var bgBar = document.getElementById('bg-bar');
 var redline = document.getElementById('redline');
 var lifeline = document.getElementById('lifeline');
+var fullscreenBtn = document.getElementById('fullscreenBtn');
+var volumeBtn = document.getElementById('volumeBtn');
+var volume = document.getElementById('volume');
 
 //for(var key in bgBar){
 //    console.log(key+":"+bgBar[key]);
@@ -67,7 +70,7 @@ video.addEventListener("pause", function() {
 
 video.addEventListener("play", function() {
     iplay.className = "fa fa-pause";
-    interval = setInterval(newInterval, 200);
+    interval = setInterval(newInterval, 300);
 });
 
 video.addEventListener("ended", function() {
@@ -87,4 +90,24 @@ lifeline.addEventListener("change", function() {
     seekto = video.duration * (lifeline.value / 1000);
     video.currentTime = seekto;
     redline.style.width = cssWidth();
+});
+
+fullscreenBtn.addEventListener('click', function () {
+    if(video.requestFullScreen) {
+        video.requestFullScreen()
+    } else if(video.webkitRequestFullScreen) {
+        video.webkitRequestFullScreen()
+    } else if (video.mozRequestFullScreen) {
+        video.mozRequestFullScreen();
+    }
+});
+
+volumeBtn.addEventListener('click', function () {
+    if(video.volume) {
+        video.volume = 0;
+        volume.className = 'fa fa-volume-off';
+    } else if (!video.volume) {
+        video.volume = 1;
+        volume.className = 'fa fa-volume-up';
+    }
 });

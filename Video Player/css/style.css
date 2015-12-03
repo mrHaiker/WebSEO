@@ -106,3 +106,7 @@ input[type='range']::-webkit-slider-thumb {
     font-size: 14px;
     cursor: default;
 }
+
+#fullscreenBtn {
+    float: right;
+}
