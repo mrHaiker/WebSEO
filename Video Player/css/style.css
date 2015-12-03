@@ -5,6 +5,7 @@
 
 body {
     background: #151515;
+    font-family: Tahoma, sans-serif;
 }
 
 .wrapper {
@@ -25,10 +26,30 @@ video {
     background: rgba(0,0,0,.3);
     height: 40px;
     width: 100%;
-    border-top: 2px solid red;
     position: absolute;
     bottom: -50px;
     transition: bottom .25s ease;
+}
+
+.controls #bg-bar {
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    top: 0;
+    background: #777;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.controls #line-bar {
+    position: absolute;
+    height: 2px;
+    min-width: 1px;
+    float: left;
+    top: 0;
+    background: red;
+    cursor: pointer;
+    z-index: 2;
 }
 
 .navigation {
@@ -46,4 +67,9 @@ video {
 
 .wrapper:hover .controls {
     bottom: 0;
+}
+
+.wrapper #time {
+    font-size: 14px;
+    cursor: default;
 }
