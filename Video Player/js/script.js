@@ -3,14 +3,16 @@ var play = document.getElementById('play');
 var iplay = document.getElementById('fa-play');
 var time = document.getElementById('time');
 var bgBar = document.getElementById('bg-bar');
-var lineBar = document.getElementById('line-bar');
+var redline = document.getElementById('redline');
+var lifeline = document.getElementById('lifeline');
 
 //for(var key in bgBar){
 //    console.log(key+":"+bgBar[key]);
 //}
 
 var interval,
-    outWidth = 0;
+    outWidth = 0,
+    seekto;
 
 function togglePause () {
     if(video.paused) {
@@ -43,11 +45,16 @@ function typeTime (sec) {   //100
 }
 
 function newInterval () {
-    var step = bgBar.clientWidth/(video.duration);  // 800px делит на длинну ролика => ~15px
-    outWidth = video.currentTime*step;  // текущий момент времени воспроизведения множит на шаг (15px)
-    lineBar.style.width = outWidth + 'px';
+    redline.style.width = cssWidth();
+    var nt = video.currentTime * (1000 / video.duration);
+    lifeline.value = nt;
 }
 
+function cssWidth (){   //функциия для RedLine
+    var step = bgBar.clientWidth/video.duration;  // 800px делит на длинну ролика => ~15px
+    outWidth = video.currentTime*step;  // текущий момент времени воспроизведения множит на шаг (15px)
+    return outWidth + 'px';
+}
 
 // События
 video.addEventListener("click", togglePause);
@@ -60,18 +67,24 @@ video.addEventListener("pause", function() {
 
 video.addEventListener("play", function() {
     iplay.className = "fa fa-pause";
-    interval = setInterval(newInterval, 100);
+    interval = setInterval(newInterval, 200);
 });
 
 video.addEventListener("ended", function() {
     iplay.className = "fa fa-repeat";
     interval = clearInterval(interval);
-    lineBar.style.width = bgBar.clientWidth+'px';
+    redline.style.width = bgBar.clientWidth+'px';
 });
 
 video.addEventListener("timeupdate", function() {
     var sec = Math.floor(video.currentTime);
     var duration = Math.floor(video.duration);
+
     time.innerHTML = typeTime(sec) + '/' + typeTime(duration);
 });
 
+lifeline.addEventListener("change", function() {
+    seekto = video.duration * (lifeline.value / 1000);
+    video.currentTime = seekto;
+    redline.style.width = cssWidth();
+});

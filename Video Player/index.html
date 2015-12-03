@@ -11,11 +11,14 @@
 <div class="wrapper">
     <video id="video" autoplay muted>
         <!--<source src="http://n33.filecdn.to/ff/Y2QzZTAzN2MwMzhhMTgwYTdhYTY1Mjg0ZjJmMGM4NDN8ZnN0b3wyOTYwNDQxNTE2fDEwMDAwfDJ8MHw5fDMzfGY4ZDI3Y2Q2NzhhYjc2MWMxZGE3ODM0Y2UxOTUxZTJjfDB8NDo3LjExOjR8MHwxNzQ5ODcwNjk1fDE0NDkxMzkxMzMuMjI3Nw,,/playvideo_64z2yfzpoi2okhshnyik3cfau.0.1765758616.974127405.1449139097.mp4" type="video/mp4">-->
-        <source src="http://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        <source src="http://media.w3.org/2010/05/sintel/trailer.mp4" type="video/mp4">
     </video>
     <div class="controls">
-        <div id="line-bar"></div>
-        <div id="bg-bar"></div>
+        <div id="line-bar">
+            <div id="redline"></div>
+            <div id="bg-bar"></div>
+            <input id="lifeline" type="range" min="0" max="1000" value="0" step="1" multiple>
+        </div>
         <ul class="navigation">
             <li id="play"><i id="fa-play" class="fa fa-play"></i></li>
             <li id="time"></li>

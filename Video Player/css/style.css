@@ -18,8 +18,7 @@ body {
 }
 
 video {
-    width: 800px;
-    height: 440px;
+    width: 100%;
 }
 
 .controls {
@@ -27,29 +26,63 @@ video {
     height: 40px;
     width: 100%;
     position: absolute;
-    bottom: -50px;
+    bottom: -38px;
     transition: bottom .25s ease;
 }
 
-.controls #bg-bar {
-    position: absolute;
-    height: 2px;
+input[type=range] {
+    -webkit-appearance: none;
     width: 100%;
+    height: 2px;
+    background-color: rgba(0,0,0,0);
     top: 0;
-    background: #777;
+    position: absolute;
     cursor: pointer;
-    z-index: 1;
+    z-index: 2;
+}
+
+input[type=range]:focus {
+    outline: 0;
+}
+
+input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color: red;
+    width: 2px;
+    height: 2px;
+    transition: all .2s ease;
+}
+
+.controls:hover input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color: #ecf0f1;
+    border: 1px solid #bdc3c7;
+    width: 6px;
+    height: 6px;
 }
 
 .controls #line-bar {
     position: absolute;
-    height: 2px;
+    height: 5px;
+    top: -2px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.controls #line-bar #redline {
     min-width: 1px;
     float: left;
-    top: 0;
     background: red;
-    cursor: pointer;
     z-index: 2;
+    height: 2px;
+    position: absolute;
+}
+
+.controls #line-bar #bg-bar {
+    background: #777;
+    height: 2px;
+    width: 100%;
+    position: absolute;
 }
 
 .navigation {
