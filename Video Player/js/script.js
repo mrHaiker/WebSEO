@@ -9,15 +9,13 @@ var fullscreenBtn = document.getElementById('fullscreenBtn');
 var volumeBtn = document.getElementById('volumeBtn');
 var volume = document.getElementById('volume');
 
-//for(var key in bgBar){
-//    console.log(key+":"+bgBar[key]);
-//}
-
 var interval,
     outWidth = 0,
     seekto;
 
-function togglePause () {
+
+
+function togglePause () {   // функция паузы/проигрывания видео
     if(video.paused) {
         video.play();
     } else {
@@ -25,7 +23,7 @@ function togglePause () {
     }
 }
 
-function typeTime (sec) {   //100
+function typeTime (sec) {   // функция возвращает секунды в формате времени
     var min = Math.floor(sec / 60);
     var hour = Math.floor(min / 60);
     var time;
@@ -47,19 +45,19 @@ function typeTime (sec) {   //100
     return time;
 }
 
-function newInterval () {
+function newInterval () {   // интервал изменяющий положение линии состояния
     redline.style.width = cssWidth();
-    var nt = video.currentTime * (1000 / video.duration);
-    lifeline.value = nt;
+    var newTime = video.currentTime * (1000 / video.duration);
+    lifeline.value = newTime;
 }
 
-function cssWidth (){   //�������� ��� RedLine
-    var step = bgBar.clientWidth/video.duration;  // 800px ����� �� ������ ������ => ~15px
-    outWidth = video.currentTime*step;  // ������� ������ ������� ��������������� ������ �� ��� (15px)
+function cssWidth (){   //функциия для RedLine
+    var step = bgBar.clientWidth/video.duration;  // 800px делит на длинну ролика => ~15px
+    outWidth = video.currentTime*step;  // текущий момент времени воспроизведения множит на шаг (15px)
     return outWidth + 'px';
 }
 
-// �������
+// События
 video.addEventListener("click", togglePause);
 play.addEventListener("click", togglePause);
 
