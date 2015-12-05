@@ -10,7 +10,13 @@ var volume = document.getElementById('volume');
 var pointer = document.getElementById('pointer');
 var wrapper = document.getElementById('player');
 
-var  outWidth = 0;
+var outWidth = 0;
+
+if(localStorage.getItem("lastTime")) {
+    video.currentTime = localStorage.getItem("lastTime");
+} else {
+    video.currentTime = 0;
+}
 
 //********************************************** функции **********************************************//
 
@@ -77,6 +83,7 @@ video.addEventListener("timeupdate", function() {
 
     time.innerHTML = typeTime(sec) + '/' + typeTime(duration);
     redline.style.width = cssWidth();
+    localStorage.setItem('lastTime', video.currentTime);
 });
 
 fullscreenBtn.addEventListener('click', function () {
