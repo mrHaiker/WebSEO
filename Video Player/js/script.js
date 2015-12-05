@@ -15,6 +15,8 @@ var outWidth = 0,
     firstStart = true;
 
 
+//********************************************** функции **********************************************//
+
 function startTime () {
     if (localStorage.getItem("lastTime")) {
         video.currentTime = localStorage.getItem("lastTime");
@@ -27,8 +29,6 @@ function startTime () {
         video.currentTime = 0;
     }
 }
-
-//********************************************** функции **********************************************//
 
 function togglePause () {   // функция паузы/проигрывания видео
     if(video.paused) {
@@ -69,6 +69,7 @@ function cssWidth (){   //функциия для RedLine
 function movePointer (e) {
     redline.style.width = e.pageX-wrapper.offsetLeft + 'px';
 }
+
 
 //********************************************** События **********************************************//
 video.addEventListener("click", togglePause);
