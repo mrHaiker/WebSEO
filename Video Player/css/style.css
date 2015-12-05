@@ -46,7 +46,7 @@ video {
     height: 2px;
     position: absolute;
     top: 1px;
-    /*transition: all .4s ease;*/
+    transition: all .4s ease;
 }
 
 .controls #line-bar #bg-line {
@@ -63,7 +63,8 @@ video {
     background: red;
     position: absolute;
     top: 0;
-    /*transition: all .4s ease;*/
+    right: 0;
+    transition: all .4s ease;
 }
 
 .wrapper:hover .controls #line-bar #redline #pointer {

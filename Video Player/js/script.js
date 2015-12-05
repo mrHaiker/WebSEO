@@ -51,8 +51,7 @@ function cssWidth (){   //функциия для RedLine
 }
 
 function movePointer (e) {
-    pointer.style.left = e.pageX-wrapper.offsetLeft + 'px';
-    redline.style.width = pointer.offsetLeft+'px';
+    redline.style.width = e.pageX-wrapper.offsetLeft + 'px';
 }
 
 //********************************************** События **********************************************//
@@ -77,8 +76,7 @@ video.addEventListener("timeupdate", function() {
     var duration = Math.floor(video.duration);
 
     time.innerHTML = typeTime(sec) + '/' + typeTime(duration);
-    pointer.style.left = cssWidth();
-    redline.style.width = pointer.offsetLeft+'px';
+    redline.style.width = cssWidth();
 });
 
 fullscreenBtn.addEventListener('click', function () {
@@ -103,7 +101,6 @@ volumeBtn.addEventListener('click', function () {
 
 controlLine.addEventListener('click', function (e) {
     video.currentTime = video.duration * (e.offsetX / bgBar.clientWidth);
-    pointer.style.left = e.offsetX+'px';
     redline.style.width = e.offsetX+'px';
     if(video.paused) video.play();
 });
@@ -113,7 +110,7 @@ pointer.addEventListener('mousedown', function (e) {
     e.preventDefault();
 });
 
-window.addEventListener('mouseup', function () {
+pointer.addEventListener('mouseup', function () {
     window.removeEventListener('mousemove', movePointer);
     video.currentTime = video.duration * (pointer.offsetLeft / bgBar.clientWidth);
 });
