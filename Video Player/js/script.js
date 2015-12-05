@@ -15,7 +15,7 @@ var outWidth = 0,
     firstStart = true;
 
 
-//********************************************** функции **********************************************//
+//********************************************** С„СѓРЅРєС†РёРё **********************************************//
 
 function startTime () {
     if (localStorage.getItem("lastTime")) {
@@ -30,7 +30,7 @@ function startTime () {
     }
 }
 
-function togglePause () {   // функция паузы/проигрывания видео
+function togglePause () {   // С„СѓРЅРєС†РёСЏ РїР°СѓР·С‹/РїСЂРѕРёРіСЂС‹РІР°РЅРёСЏ РІРёРґРµРѕ
     if(video.paused) {
         video.play();
     } else {
@@ -38,7 +38,7 @@ function togglePause () {   // функция паузы/проигрывания видео
     }
 }
 
-function typeTime (sec) {   // функция возвращает секунды в формате времени
+function typeTime (sec) {   // С„СѓРЅРєС†РёСЏ РІРѕР·РІСЂР°С‰Р°РµС‚ СЃРµРєСѓРЅРґС‹ РІ С„РѕСЂРјР°С‚Рµ РІСЂРµРјРµРЅРё
     var min = Math.floor(sec / 60);
     var hour = Math.floor(min / 60);
     var time;
@@ -60,9 +60,9 @@ function typeTime (sec) {   // функция возвращает секунды в формате времени
     return time;
 }
 
-function cssWidth (){   //функциия для RedLine
-    var step = bgBar.clientWidth/video.duration;  // 800px делит на длинну ролика => ~15px
-    outWidth = video.currentTime*step;  // текущий момент времени воспроизведения множит на шаг (15px)
+function cssWidth (){   //С„СѓРЅРєС†РёРёСЏ РґР»СЏ RedLine
+    var step = bgBar.clientWidth/video.duration;  // 800px РґРµР»РёС‚ РЅР° РґР»РёРЅРЅСѓ СЂРѕР»РёРєР° => ~15px
+    outWidth = video.currentTime*step;  // С‚РµРєСѓС‰РёР№ РјРѕРјРµРЅС‚ РІСЂРµРјРµРЅРё РІРѕСЃРїСЂРѕРёР·РІРµРґРµРЅРёСЏ РјРЅРѕР¶РёС‚ РЅР° С€Р°Рі (15px)
     return outWidth + 'px';
 }
 
@@ -71,7 +71,7 @@ function movePointer (e) {
 }
 
 
-//********************************************** События **********************************************//
+//********************************************** РЎРѕР±С‹С‚РёСЏ **********************************************//
 video.addEventListener("click", togglePause);
 play.addEventListener("click", togglePause);
 
