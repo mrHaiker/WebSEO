@@ -20,8 +20,6 @@ var outWidth = 0,
 function startTime () {
     if (localStorage.getItem("lastTime")) {
         video.currentTime = localStorage.getItem("lastTime");
-        console.log(video.duration);
-        console.log(localStorage.getItem("lastTime"));
         if (localStorage.getItem("lastTime") == video.duration) {
             video.currentTime = 0;
         }
