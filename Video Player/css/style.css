@@ -30,37 +30,6 @@ video {
     transition: bottom .25s ease;
 }
 
-input[type=range] {
-    -webkit-appearance: none;
-    width: 100%;
-    height: 2px;
-    background-color: rgba(0,0,0,0);
-    top: 0;
-    position: absolute;
-    cursor: pointer;
-    z-index: 2;
-}
-
-input[type=range]:focus {
-    outline: 0;
-}
-
-input[type='range']::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    background-color: red;
-    width: 2px;
-    height: 2px;
-    transition: all .2s ease;
-}
-
-.controls:hover input[type='range']::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    background-color: #ecf0f1;
-    border: 1px solid #bdc3c7;
-    width: 6px;
-    height: 6px;
-}
-
 .controls #line-bar {
     position: absolute;
     height: 5px;
@@ -76,13 +45,32 @@ input[type='range']::-webkit-slider-thumb {
     z-index: 2;
     height: 2px;
     position: absolute;
+    top: 1px;
+    /*transition: all .4s ease;*/
 }
 
-.controls #line-bar #bg-bar {
-    background: #777;
+.controls #line-bar #bg-line {
+    background: #222;
     height: 2px;
     width: 100%;
+    top: 1px;
     position: absolute;
+}
+
+.controls #line-bar #redline #pointer {
+    width: 2px;
+    height: 2px;
+    background: red;
+    position: absolute;
+    top: 0;
+    /*transition: all .4s ease;*/
+}
+
+.wrapper:hover .controls #line-bar #redline #pointer {
+    width: 6px;
+    height: 6px;
+    background: #dedede;
+    top: -2px;
 }
 
 .navigation {

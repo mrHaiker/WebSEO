@@ -2,18 +2,17 @@ var video = document.getElementById('video');
 var play = document.getElementById('play');
 var iplay = document.getElementById('fa-play');
 var time = document.getElementById('time');
-var bgBar = document.getElementById('bg-bar');
+var bgBar = document.getElementById('bg-line');
 var redline = document.getElementById('redline');
-var lifeline = document.getElementById('lifeline');
-var fullscreenBtn = document.getElementById('fullscreenBtn');
+var controlLine = document.getElementById('line-bar');
 var volumeBtn = document.getElementById('volumeBtn');
 var volume = document.getElementById('volume');
+var pointer = document.getElementById('pointer');
+var wrapper = document.getElementById('player');
 
-var interval,
-    outWidth = 0,
-    seekto;
+var  outWidth = 0;
 
-
+//********************************************** функции **********************************************//
 
 function togglePause () {   // функция паузы/проигрывания видео
     if(video.paused) {
@@ -45,35 +44,31 @@ function typeTime (sec) {   // функция возвращает секунд�
     return time;
 }
 
-function newInterval () {   // интервал изменяющий положение линии состояния
-    redline.style.width = cssWidth();
-    var newTime = video.currentTime * (1000 / video.duration);
-    lifeline.value = newTime;
-}
-
 function cssWidth (){   //функциия для RedLine
     var step = bgBar.clientWidth/video.duration;  // 800px делит на длинну ролика => ~15px
     outWidth = video.currentTime*step;  // текущий момент времени воспроизведения множит на шаг (15px)
     return outWidth + 'px';
 }
 
-// События
+function movePointer (e) {
+    pointer.style.left = e.pageX-wrapper.offsetLeft + 'px';
+    redline.style.width = pointer.offsetLeft+'px';
+}
+
+//********************************************** События **********************************************//
 video.addEventListener("click", togglePause);
 play.addEventListener("click", togglePause);
 
 video.addEventListener("pause", function() {
     iplay.className = "fa fa-play";
-    interval = clearInterval(interval);
 });
 
 video.addEventListener("play", function() {
     iplay.className = "fa fa-pause";
-    interval = setInterval(newInterval, 300);
 });
 
 video.addEventListener("ended", function() {
     iplay.className = "fa fa-repeat";
-    interval = clearInterval(interval);
     redline.style.width = bgBar.clientWidth+'px';
 });
 
@@ -82,12 +77,8 @@ video.addEventListener("timeupdate", function() {
     var duration = Math.floor(video.duration);
 
     time.innerHTML = typeTime(sec) + '/' + typeTime(duration);
-});
-
-lifeline.addEventListener("change", function() {
-    seekto = video.duration * (lifeline.value / 1000);
-    video.currentTime = seekto;
-    redline.style.width = cssWidth();
+    pointer.style.left = cssWidth();
+    redline.style.width = pointer.offsetLeft+'px';
 });
 
 fullscreenBtn.addEventListener('click', function () {
@@ -108,4 +99,21 @@ volumeBtn.addEventListener('click', function () {
         video.volume = 1;
         volume.className = 'fa fa-volume-up';
     }
+});
+
+controlLine.addEventListener('click', function (e) {
+    video.currentTime = video.duration * (e.offsetX / bgBar.clientWidth);
+    pointer.style.left = e.offsetX+'px';
+    redline.style.width = e.offsetX+'px';
+    if(video.paused) video.play();
+});
+
+pointer.addEventListener('mousedown', function (e) {
+    window.addEventListener('mousemove', movePointer);
+    e.preventDefault();
+});
+
+window.addEventListener('mouseup', function () {
+    window.removeEventListener('mousemove', movePointer);
+    video.currentTime = video.duration * (pointer.offsetLeft / bgBar.clientWidth);
 });

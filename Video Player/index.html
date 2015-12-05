@@ -8,16 +8,18 @@
 </head>
 <body>
 
-<div class="wrapper">
+<div id="player" class="wrapper">
     <video id="video" autoplay>
-        <source src="http://n16.filecdn.to/ff/ODg4ODliNWFkOTY4YjY2MjFjMWYzMzFhODhiMjZjZTF8ZnN0b3wyOTYwNDQxNTE2fDEwMDAwfDJ8MHw2fDE2fGVkOTYyZTk0Y2I0MTU2NzY2ZTRhNTFkYWRhNTJlNDRhfDB8OTo3fDB8MTgwNjE0NzA5MnwxNDQ5MjMzNTE0LjQzNDY,/playvideo_64z2yfzpoi2okhshnyik3de2e.0.1765758616.974127405.1449233513.mp4" type="video/mp4">
-        <!--<source src="http://media.w3.org/2010/05/sintel/trailer.mp4" type="video/mp4">-->
+        <!--<source src="http://n16.filecdn.to/ff/ODg4ODliNWFkOTY4YjY2MjFjMWYzMzFhODhiMjZjZTF8ZnN0b3wyOTYwNDQxNTE2fDEwMDAwfDJ8MHw2fDE2fGVkOTYyZTk0Y2I0MTU2NzY2ZTRhNTFkYWRhNTJlNDRhfDB8OTo3fDB8MTgwNjE0NzA5MnwxNDQ5MjMzNTE0LjQzNDY,/playvideo_64z2yfzpoi2okhshnyik3de2e.0.1765758616.974127405.1449233513.mp4" type="video/mp4">-->
+        <source src="http://media.w3.org/2010/05/sintel/trailer.mp4" type="video/mp4">
     </video>
     <div class="controls">
         <div id="line-bar">
-            <div id="redline"></div>
-            <div id="bg-bar"></div>
-            <input id="lifeline" type="range" min="0" max="1000" value="0" step="1" multiple>
+            <div id="redline">
+                <div id="pointer"></div>
+            </div>
+            <div id="bg-line"></div>
+            <!--<input id="lifeline" type="range" min="0" max="1000" value="0" step="1" multiple>-->
         </div>
         <ul class="navigation">
             <li id="play"><i id="fa-play" class="fa fa-play"></i></li>
