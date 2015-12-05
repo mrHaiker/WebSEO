@@ -9,18 +9,28 @@ var volumeBtn = document.getElementById('volumeBtn');
 var volume = document.getElementById('volume');
 var pointer = document.getElementById('pointer');
 var wrapper = document.getElementById('player');
+var spinner = document.getElementById('spinner');
 
-var outWidth = 0;
+var outWidth = 0,
+    firstStart = true;
 
-if(localStorage.getItem("lastTime")) {
-    video.currentTime = localStorage.getItem("lastTime");
-} else {
-    video.currentTime = 0;
+
+function startTime () {
+    if (localStorage.getItem("lastTime")) {
+        video.currentTime = localStorage.getItem("lastTime");
+        console.log(video.duration);
+        console.log(localStorage.getItem("lastTime"));
+        if (localStorage.getItem("lastTime") == video.duration) {
+            video.currentTime = 0;
+        }
+    } else {
+        video.currentTime = 0;
+    }
 }
 
-//********************************************** С„СѓРЅРєС†РёРё **********************************************//
+//********************************************** функции **********************************************//
 
-function togglePause () {   // С„СѓРЅРєС†РёСЏ РїР°СѓР·С‹/РїСЂРѕРёРіСЂС‹РІР°РЅРёСЏ РІРёРґРµРѕ
+function togglePause () {   // функция паузы/проигрывания видео
     if(video.paused) {
         video.play();
     } else {
@@ -28,7 +38,7 @@ function togglePause () {   // С„СѓРЅРєС†РёСЏ РїР°СѓР·С‹/РїСЂРѕРёРіСЂС‹РІР°РЅРёС
     }
 }
 
-function typeTime (sec) {   // С„СѓРЅРєС†РёСЏ РІРѕР·РІСЂР°С‰Р°РµС‚ СЃРµРєСѓРЅРґС‹ РІ С„РѕСЂРјР°С‚Рµ РІСЂРµРјРµРЅРё
+function typeTime (sec) {   // функция возвращает секунды в формате времени
     var min = Math.floor(sec / 60);
     var hour = Math.floor(min / 60);
     var time;
@@ -50,9 +60,9 @@ function typeTime (sec) {   // С„СѓРЅРєС†РёСЏ РІРѕР·РІСЂР°С‰Р°РµС‚ СЃРµРєСѓРЅРґС
     return time;
 }
 
-function cssWidth (){   //С„СѓРЅРєС†РёРёСЏ РґР»СЏ RedLine
-    var step = bgBar.clientWidth/video.duration;  // 800px РґРµР»РёС‚ РЅР° РґР»РёРЅРЅСѓ СЂРѕР»РёРєР° => ~15px
-    outWidth = video.currentTime*step;  // С‚РµРєСѓС‰РёР№ РјРѕРјРµРЅС‚ РІСЂРµРјРµРЅРё РІРѕСЃРїСЂРѕРёР·РІРµРґРµРЅРёСЏ РјРЅРѕР¶РёС‚ РЅР° С€Р°Рі (15px)
+function cssWidth (){   //функциия для RedLine
+    var step = bgBar.clientWidth/video.duration;  // 800px делит на длинну ролика => ~15px
+    outWidth = video.currentTime*step;  // текущий момент времени воспроизведения множит на шаг (15px)
     return outWidth + 'px';
 }
 
@@ -60,7 +70,7 @@ function movePointer (e) {
     redline.style.width = e.pageX-wrapper.offsetLeft + 'px';
 }
 
-//********************************************** РЎРѕР±С‹С‚РёСЏ **********************************************//
+//********************************************** События **********************************************//
 video.addEventListener("click", togglePause);
 play.addEventListener("click", togglePause);
 
@@ -77,13 +87,23 @@ video.addEventListener("ended", function() {
     redline.style.width = bgBar.clientWidth+'px';
 });
 
+video.addEventListener('seeking', function () {
+    spinner.className = 'visible';
+});
+
 video.addEventListener("timeupdate", function() {
     var sec = Math.floor(video.currentTime);
     var duration = Math.floor(video.duration);
 
+
+    if(firstStart) {
+        startTime();
+        firstStart = false;
+    }
     time.innerHTML = typeTime(sec) + '/' + typeTime(duration);
     redline.style.width = cssWidth();
     localStorage.setItem('lastTime', video.currentTime);
+    spinner.className = 'hidden';
 });
 
 fullscreenBtn.addEventListener('click', function () {

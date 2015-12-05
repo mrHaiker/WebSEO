@@ -99,3 +99,21 @@ video {
 #fullscreenBtn {
     float: right;
 }
+
+#spinner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    font-size: 30px;
+    color: #dedede;
+    margin-left: -15px;
+    margin-top: -35px;
+}
+
+.visible {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
