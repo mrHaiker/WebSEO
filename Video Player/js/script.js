@@ -11,13 +11,15 @@ var pointer = document.getElementById('pointer');
 var wrapper = document.getElementById('player');
 var spinner = document.getElementById('spinner');
 
-var outWidth = 0,
-    firstStart = true;
+var firstStart = true,
+    blockChangeRedline = false,
+    offsetPointer;
 
 
 //********************************************** функции **********************************************//
 
 function startTime () {
+    firstStart = false;
     if (localStorage.getItem("lastTime")) {
         video.currentTime = localStorage.getItem("lastTime");
         if (localStorage.getItem("lastTime") == video.duration) {
@@ -58,14 +60,8 @@ function typeTime (sec) {   // функция возвращает секунд�
     return time;
 }
 
-function cssWidth (){   //функциия для RedLine
-    var step = bgBar.clientWidth/video.duration;  // 800px делит на длинну ролика => ~15px
-    outWidth = video.currentTime*step;  // текущий момент времени воспроизведения множит на шаг (15px)
-    return outWidth + 'px';
-}
-
 function movePointer (e) {
-    redline.style.width = e.pageX-wrapper.offsetLeft + 'px';
+    redline.style.width = e.pageX - wrapper.offsetLeft + offsetPointer + 'px';
 }
 
 
@@ -94,13 +90,10 @@ video.addEventListener("timeupdate", function() {
     var sec = Math.floor(video.currentTime);
     var duration = Math.floor(video.duration);
 
+    if(firstStart) startTime();
+    if(!blockChangeRedline) redline.style.width = video.currentTime * (bgBar.clientWidth/video.duration) + 'px';
 
-    if(firstStart) {
-        startTime();
-        firstStart = false;
-    }
     time.innerHTML = typeTime(sec) + '/' + typeTime(duration);
-    redline.style.width = cssWidth();
     localStorage.setItem('lastTime', video.currentTime);
     spinner.className = 'hidden';
 });
@@ -126,17 +119,23 @@ volumeBtn.addEventListener('click', function () {
 });
 
 controlLine.addEventListener('click', function (e) {
-    video.currentTime = video.duration * (e.offsetX / bgBar.clientWidth);
-    redline.style.width = e.offsetX+'px';
+    var offsetX = e.pageX - wrapper.offsetLeft;
+    video.currentTime = video.duration * (offsetX / bgBar.clientWidth);
+    redline.style.width = offsetX+'px';
     if(video.paused) video.play();
 });
 
 pointer.addEventListener('mousedown', function (e) {
+    offsetPointer = e.offsetX;
     window.addEventListener('mousemove', movePointer);
     e.preventDefault();
-});
+    blockChangeRedline = true;
+    console.log('mouseDown');
 
-pointer.addEventListener('mouseup', function () {
-    window.removeEventListener('mousemove', movePointer);
-    video.currentTime = video.duration * (pointer.offsetLeft / bgBar.clientWidth);
+    wrapper.addEventListener('mouseup', function () {
+        console.log('mouseUp');
+        window.removeEventListener('mousemove', movePointer);
+        video.currentTime = video.duration * (redline.offsetWidth / bgBar.clientWidth);
+        blockChangeRedline = false;
+    });
 });

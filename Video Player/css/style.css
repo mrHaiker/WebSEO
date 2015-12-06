@@ -58,12 +58,12 @@ video {
 }
 
 .controls #line-bar #redline #pointer {
-    width: 2px;
+    width: 3px;
     height: 2px;
     background: red;
     position: absolute;
     top: 0;
-    right: 0;
+    right: -3px;
     transition: all .4s ease;
 }
 
