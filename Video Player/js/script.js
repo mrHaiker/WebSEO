@@ -18,8 +18,9 @@ var firstStart = true,
 
 //********************************************** функции **********************************************//
 
-function startTime () {
+function startTime () {   // загрузка из localStorage
     firstStart = false;
+
     if (localStorage.getItem("lastTime")) {
         video.currentTime = localStorage.getItem("lastTime");
         if (localStorage.getItem("lastTime") == video.duration) {
@@ -28,6 +29,14 @@ function startTime () {
     } else {
         video.currentTime = 0;
     }
+
+    if (localStorage.getItem("volume")) {
+        video.volume = localStorage.getItem("volume");
+    } else {
+        video.volume = 1;
+    }
+    if(video.volume) volume.className = 'fa fa-volume-up';
+    else volume.className = 'fa fa-volume-off';
 }
 
 function togglePause () {   // функция паузы/проигрывания видео
@@ -64,7 +73,6 @@ function movePointer (e) {
     redline.style.width = e.pageX - wrapper.offsetLeft + offsetPointer + 'px';
 }
 
-
 //********************************************** События **********************************************//
 video.addEventListener("click", togglePause);
 play.addEventListener("click", togglePause);
@@ -91,6 +99,7 @@ video.addEventListener("timeupdate", function() {
     var duration = Math.floor(video.duration);
 
     if(firstStart) startTime();
+
     if(!blockChangeRedline) redline.style.width = video.currentTime * (bgBar.clientWidth/video.duration) + 'px';
 
     time.innerHTML = typeTime(sec) + '/' + typeTime(duration);
@@ -100,9 +109,9 @@ video.addEventListener("timeupdate", function() {
 
 fullscreenBtn.addEventListener('click', function () {
     if(video.requestFullScreen) {
-        video.requestFullScreen()
+        video.requestFullScreen();
     } else if(video.webkitRequestFullScreen) {
-        video.webkitRequestFullScreen()
+        video.webkitRequestFullScreen();
     } else if (video.mozRequestFullScreen) {
         video.mozRequestFullScreen();
     }
@@ -116,6 +125,7 @@ volumeBtn.addEventListener('click', function () {
         video.volume = 1;
         volume.className = 'fa fa-volume-up';
     }
+    localStorage.setItem('volume', video.volume);
 });
 
 controlLine.addEventListener('click', function (e) {
@@ -130,12 +140,8 @@ pointer.addEventListener('mousedown', function (e) {
     window.addEventListener('mousemove', movePointer);
     e.preventDefault();
     blockChangeRedline = true;
-    console.log('mouseDown');
-
     wrapper.addEventListener('mouseup', function () {
-        console.log('mouseUp');
         window.removeEventListener('mousemove', movePointer);
-        video.currentTime = video.duration * (redline.offsetWidth / bgBar.clientWidth);
         blockChangeRedline = false;
     });
 });
