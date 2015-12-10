@@ -1,0 +1,92 @@
+@blue: dodgerblue;
+
+
+body {
+  min-width: 800px;
+}
+
+header {
+  background: #e8e8e8;
+  height: 60px;
+  line-height: 60px;
+  border-bottom: 1px solid #dedede;
+  .logo {
+    height: 100%;
+    width: 120px;
+    float: left;
+    text-align: center;
+  }
+  ul {
+    float: left;
+    list-style-type: none;
+    padding: 0;
+    .active {
+      border-bottom: 2px solid #999;
+    }
+    li {
+      line-height: 20px;
+      display: inline-block;
+      padding: 18px 15px;
+      font-weight: bold;
+      color: #666;
+      cursor: pointer;
+      .counter {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background: #777;
+        color: #dedede;
+        line-height: 20px;
+        border-radius: 3px;
+        text-align: center;
+      }
+    }
+  }
+  #user {
+    float: right;
+    height: 100%;
+    margin-right: 20px;
+    cursor: pointer;
+    .wrapper {
+      float: left;
+      width: 30px;
+      height: 30px;
+      border-radius: 10%;
+      background: dodgerblue;
+      text-align: center;
+      margin-top: 15px;
+      line-height: 30px;
+      color: #333;
+    }
+    ul {
+      margin: 0 10px;
+      padding: 0;
+      list-style-type: none;
+      li {
+        height: 20px;
+        padding: 0;
+        display: block;
+        line-height: 40px;
+      }
+      #lastName {
+        font-weight: 200;
+        font-size: 14px;
+      }
+    }
+    .fa-chevron-down {
+      float: right;
+      line-height: 60px;
+      color: #666;
+    }
+  }
+  #help {
+    text-transform: capitalize;
+    font-weight: bold;
+    float: right;
+    padding: 10px 20px;
+    line-height: 40px;
+    cursor: pointer;
+    margin-right: 30px;
+    color: #666;
+  }
+}
