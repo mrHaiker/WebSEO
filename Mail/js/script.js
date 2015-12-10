@@ -4,6 +4,8 @@ var sent = document.getElementById('sent');
 var draft = document.getElementById('draft');
 var basket = document.getElementById('basket');
 
+
+//*********************************** functions ***********************************//
 function loadAjaxContent(name) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', 'json/'+name+'.json', false);
@@ -31,6 +33,7 @@ function renderContent(array) {
     }
 }
 
+
 function removeAllClass () {
     inbox.className = '';
     sent.className = '';
@@ -38,25 +41,17 @@ function removeAllClass () {
     basket.className = '';
 }
 
+
 loadAjaxContent('inbox');
 
-inbox.addEventListener('click', function (e) {
+function onclick(e) {
     loadAjaxContent(this.id);
     removeAllClass();
-    inbox.className = 'active-page';
-});
-sent.addEventListener('click', function (e) {
-    loadAjaxContent(this.id);
-    removeAllClass();
-    sent.className = 'active-page';
-});
-draft.addEventListener('click', function (e) {
-    loadAjaxContent(this.id);
-    removeAllClass();
-    draft.className = 'active-page';
-});
-basket.addEventListener('click', function (e) {
-    loadAjaxContent(this.id);
-    removeAllClass();
-    basket.className = 'active-page';
-});
+    this.className = 'active-page';
+}
+
+//************************************** events **************************************//
+inbox.addEventListener('click', onclick);
+sent.addEventListener('click', onclick);
+draft.addEventListener('click', onclick);
+basket.addEventListener('click', onclick);
