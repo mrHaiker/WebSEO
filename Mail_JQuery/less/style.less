@@ -1,6 +1,12 @@
 @blue: dodgerblue;
 
 
+.transition {
+  transition: all .35s ease;
+
+}
+
+
 body {
   min-width: 800px;
 }
@@ -20,6 +26,7 @@ header {
     float: left;
     list-style-type: none;
     padding: 0;
+    margin-bottom: 0;
     .active {
       border-bottom: 2px solid #999;
     }
@@ -62,6 +69,7 @@ header {
       margin: 0 10px;
       padding: 0;
       list-style-type: none;
+
       li {
         height: 20px;
         padding: 0;
@@ -87,6 +95,137 @@ header {
     line-height: 40px;
     cursor: pointer;
     margin-right: 30px;
+    margin-bottom: 0;
     color: #666;
+  }
+}
+
+.article {
+  height: 140px;
+  line-height: 140px;
+  #title {
+    color: #999;
+    font-size: 28px;
+    float: left;
+    margin: 0 40px;
+    overflow: hidden;
+    height: 100%;
+  }
+  #newLatter {
+    float: right;
+    background: #666;
+    padding: 0 10px;
+    border-radius: 2px;
+    height: 30px;
+    line-height: 30px;
+    color: #dedede;
+    margin-right: 50px;
+    cursor: pointer;
+    margin-top: 55px;
+  }
+}
+
+section.nav {
+  border-bottom: 1px solid #dedede;
+  height: 40px;
+  input[type=checkbox] {
+    height: 20px;
+    width: 20px;
+    float: left;
+    margin: 10px 40px;
+  }
+  #actionContent {
+    list-style-type: none;
+    padding: 0 10px;
+    color: #333;
+    background: #e5e5e5;
+    float: left;
+    width: 230px;
+    border-radius: 2px;
+    border: 1px solid #999;
+    margin: 4px 0 0 100px;
+    position: absolute;
+    &:hover {
+      transition: all .1s ease;
+      box-shadow: 0 0 9px rgba(0,0,0,.4);
+      li {
+        display: block;
+      }
+    }
+    li {
+      display: none;
+      height: 30px;
+      line-height: 30px;
+      &:hover {
+        display: block;
+      }
+      &:first-child {
+        display: block;
+        p {
+          color: #333 !important;
+        }
+      }
+      p {
+        cursor: pointer;
+        &:hover {
+          color: #a70015;
+          transition: all .1s ease;
+
+        }
+        i {
+          float: right;
+          line-height: 30px;
+          color: #666;
+        }
+      }
+    }
+  }
+}
+
+section.content {
+  ul {
+    list-style-type: none;
+    padding: 0;
+    border: 1px solid #dedede;
+    margin-bottom: 0;
+    li {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      height: 40px;
+      line-height: 45px;
+      display: inline-block;
+      cursor: pointer;
+    }
+    .inp {
+      width: 3%;
+      text-align: center;
+      border-radius: 1px;
+      input[type=checkbox] {
+        height: 15px;
+        width: 15px;
+      }
+    }
+    .name {
+      width: 10%;
+      font-weight: bold;
+      text-align: center;
+    }
+    .theme {
+      width: 10%;
+      text-align: right;
+      padding: 0 4px;
+    }
+    .text {
+      width: 65%;
+      color: #999;
+    }
+    .time {
+      width: 10%;
+      text-align: right;
+      padding-right: 10px;
+    }
+  }
+  .new {
+    background: #e7e7e7;
   }
 }

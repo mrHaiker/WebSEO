@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
+    <title>RoboMail</title>
     <!-- FONTAWESOME-->
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <!-- Bootstrap -->
@@ -28,7 +28,7 @@
       <div class="logo">RoboMail</div>
       <ul>
         <li class="navigation active" id="inbox">Входящие
-          <div class="counter">3</div>
+          <div class="counter" style="display: none">3</div>
         </li>
         <li class="navigation" id="sent">Отправленные</li>
         <li class="navigation" id="draft">Черновики</li>
@@ -49,9 +49,29 @@
 
     </header>
 
-    <section class="article"></section>
-    <section class="nav"></section>
-    <section class="content"></section>
+    <section class="article">
+      <span id="title">Входящие</span>
+      <span id="newLatter">Новое письмо</span>
+    </section>
+    <section class="nav">
+      <input name="globalInp" type="checkbox">
+      <ul id="actionContent">
+        <li><p id="item0">Выбирите действие<i class="fa fa-chevron-down"></i></p></li>
+        <li><p id="item1">Отметить как не прочитаное</p></li>
+        <li><p id="item2">Отметить как прочитаное</p></li>
+        <li><p id="item3">Удалить</p></li>
+        <li><p id="item4">Отпраить как спам</p></li>
+      </ul>
+    </section>
+    <section class="content">
+      <ul class="item new">
+        <li class="inp"><input type="checkbox" name="checkboxId"></li>
+        <li class="name">Name</li>
+        <li class="theme">Theme</li>
+        <li class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aperiam autem delectus dignissimos, eaque, error esse excepturi inventore labore libero maxime minima nam natus necessitatibus quidem. Consectetur nulla placeat provident!</li>
+        <li class="time">time</li>
+      </ul>
+    </section>
     <footer></footer>
 
 
