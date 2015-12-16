@@ -42,7 +42,6 @@ $(document).ready(function () {
     }
 
     // события
-
     $('.navigation').click(function () {
         var nav = $(this);
         $('.navigation').removeClass('active');
