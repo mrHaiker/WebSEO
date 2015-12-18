@@ -1,0 +1,22 @@
+{
+  "name": "firework",
+  "homepage": "https://github.com/mrHaiker/WebSEO",
+  "authors": [
+    "Haiker <mr.haiker@mail.ru>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
+}
