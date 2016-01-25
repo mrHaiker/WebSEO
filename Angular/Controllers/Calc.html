@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="firstApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS Controller</title>
+    <script src="../../angular.js"></script>
+    <script>
+        var app = angular.module('firstApp', []);
+
+        app.controller('CalcCtrl', function($scope) {
+            $scope.message = 'My First Angular Controller';
+
+            $scope.firstNumber = 0;
+            $scope.secondNumber = 0;
+            $scope.result = '';
+
+            $scope.sum = function() {
+                $scope.result = $scope.firstNumber + $scope.secondNumber;
+            }
+        });
+    </script>
+</head>
+<body>
+
+<div ng-controller="CalcCtrl">
+    <h1>{{message}}</h1>
+    <input type="number" ng-model="firstNumber">
+    +
+    <input type="number" ng-model="secondNumber">
+    <button ng-click="sum()">=</button>
+    {{result}}
+</div>
+
+</body>
+</html>

@@ -17,13 +17,13 @@ $(document).ready(function () {
             circle.animate({
                 top: Obj.toY,
                 left: Obj.toX
-            },400, function () {
+            },300, function () {
                 var circle = $(this);
                 var circleOffset = circle.offset();
                 setTimeout(function () {
                     callback(circleOffset.left, circleOffset.top, circle);
                     circle.hide();
-                },400);
+                },300);
             });
         }
     }
